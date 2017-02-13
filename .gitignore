@@ -1,2 +1,4 @@
 *.gp
 .vscode/
+*.c
+*.h
