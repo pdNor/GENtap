@@ -1,10 +1,11 @@
+import datetime
 
 PATH_TO_GENDATA = '../data/genData.gp'
 PATH_TO_KEYWORDS = '../data/keyWords.gp'
 GENERATE_FILES = 1
 OUTPUT_DIR = '../output/'
 LINE_LENGTH = 80
-class commentTypes(Enum):
+class commentTypes():
     UPPER_LINE = 1
     LOWER_LINE = 2
 
@@ -30,12 +31,26 @@ class pyCgen():
 
     def generateSourceFile(self, arg1):
         self.sourceFile = open(OUTPUT_DIR + arg1,'w')
+        self.printBox(commentTypes.UPPER_LINE)
+        self.printAuthor()
+        self.printBox(commentTypes.UPPER_LINE)
 
     def printBox(self, type):
         if type == commentTypes.UPPER_LINE:
-            for x in range(0, LINE_LENGTH ):
-                self.sourceFile.write(self.data.genData[star ])
+            self.sourceFile.write(self.data.genData['star']*LINE_LENGTH)
+            self.sourceFile.write('\n')
+    
+    def printAuthor(self):
+        now = datetime.datetime.now()
+        line = ' Copyright: ' + self.data.genData['company'] + ' ' + str(now.year)
+        
+        for x in range(len(line),(LINE_LENGTH - 2)):
+            line = line + ' '
+        
+        line = line + self.data.genData['star'] + '\n'
 
+        self.sourceFile.write(self.data.genData['star'])
+        self.sourceFile.writelines(line)
 
 class userInt():
     def __init__(self):
