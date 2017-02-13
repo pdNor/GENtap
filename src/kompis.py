@@ -3,6 +3,10 @@ PATH_TO_GENDATA = '../data/genData.gp'
 PATH_TO_KEYWORDS = '../data/keyWords.gp'
 GENERATE_FILES = 1
 OUTPUT_DIR = '../output/'
+LINE_LENGTH = 80
+class commentTypes(Enum):
+    UPPER_LINE = 1
+    LOWER_LINE = 2
 
 class pyParse():
     def __init__(self):
@@ -20,7 +24,7 @@ class pyParse():
 class pyCgen():
     def __init__(self):
         self.data = pyParse()
-        self.data.readFile()
+        self.data.readFile() 
         self.sourceFile = None
         self.headerFile = None
 
@@ -28,8 +32,9 @@ class pyCgen():
         self.sourceFile = open(OUTPUT_DIR + arg1,'w')
 
     def printBox(self, type):
-        if expression: #here
-            pass
+        if type == commentTypes.UPPER_LINE:
+            for x in range(0, LINE_LENGTH ):
+                self.sourceFile.write(self.data.genData[star ])
 
 
 class userInt():
